@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -8,5 +9,7 @@ namespace API.Controllers
         {
 
         }
+        public DbSet<Client> Clients { get; set; }  
+
     }
 }

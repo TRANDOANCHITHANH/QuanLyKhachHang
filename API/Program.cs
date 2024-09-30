@@ -1,4 +1,4 @@
-using API.Controllers;
+using API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

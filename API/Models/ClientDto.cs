@@ -7,7 +7,7 @@ namespace API.Models
     {
         [Required(ErrorMessage ="First Name la truong bat buoc ")]   
         public string FirstName { get; set; } = "";
-        [Required(ErrorMessage = "First Name la truong bat buoc ")]
+        [Required(ErrorMessage = "Last Name la truong bat buoc ")]
         public string LastName { get; set; } = "";
         [Required, EmailAddress]
         public string Email { get; set; } = "";

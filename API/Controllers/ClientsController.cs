@@ -50,7 +50,45 @@ namespace API.Controllers
                 CreateAt = DateTime.Now
             };
             context.Clients.Add(client);
+            context.SaveChanges();  
             return Ok(client);
+        }
+        [HttpPut("{id}")]
+        public IActionResult EditClient(int id, ClientDto clientDto)
+        {
+            var otherclient = context.Clients.FirstOrDefault(c => c.Id != id && c.Email == clientDto.Email);
+            if (otherclient != null)
+            {
+                ModelState.AddModelError("Email", "Dia chi email da duoc su dung");
+                var validation = new ValidationProblemDetails(ModelState);
+                return BadRequest(validation);
+            }
+            var client = context.Clients.Find(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+                client.FirstName = clientDto.FirstName;
+                client.LastName = clientDto.LastName;
+                client.Email = clientDto.Email;
+                client.Phone = clientDto.Phone ?? "";
+                client.Address = clientDto.Address ?? "";
+                client.Status = clientDto.Status;
+                client.CreateAt = DateTime.Now;
+            context.SaveChanges();
+            return Ok(client);
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteClient(int id)
+        {
+            var client = context.Clients.Find(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            context.Clients.Remove(client);
+            context.SaveChanges();
+            return Ok();
         }
     }
 }

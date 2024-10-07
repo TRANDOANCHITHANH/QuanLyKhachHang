@@ -1,6 +1,52 @@
 ﻿@page "/Clients"
+@using BlazorApp.Models
 <h1 class="text-center mb-5">Danh sách khách hàng</h1>
 <a class="btn btn-primary mb-5" href="/Clients/Create">Tạo mới</a>
-@code {
 
+@if (clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Create at</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in clients)
+            {
+                <tr>
+                    <td>@client.Id</td>
+                    <td>@(client.FirstName + " " + client.LastName)</td>
+                    <td>@client.Phone</td> <!-- Sửa lại cột Phone -->
+                    <td>@client.Status</td>
+                    <td>@client.CreateAt.ToShortDateString()</td>
+                    <td style="white-space:nowrap">
+                        <a href="/Clients/Edit/@client.Id" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="/Clients/Delete/@client.Id" class="btn btn-primary btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@inject HttpClient Http
+
+@code {
+    private List<Client>? clients = new List<Client>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        clients = await Http.GetFromJsonAsync<List<Client>>("http://localhost:5221/api/clients");
+    }
 }

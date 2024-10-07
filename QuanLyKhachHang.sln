@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{5CD568AB-23C4-4C47-8417-CB81EBE44EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{48417A7D-45A6-4C9A-B16D-778DAB576854}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{48417A7D-45A6-4C9A-B16D-778DAB576854}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
